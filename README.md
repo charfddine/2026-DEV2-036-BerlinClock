@@ -1,7 +1,6 @@
 # 2026-DEV2-036-BerlinClock
 # Berlin Clock – iOS SwiftUI
 
-# Berlin Clock – iOS SwiftUI
 
 ##-------------------------------------ENGLISH--------------------------------------------
 
