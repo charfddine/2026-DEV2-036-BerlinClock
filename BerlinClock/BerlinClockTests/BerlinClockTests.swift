@@ -79,6 +79,59 @@ final class BerlinClockTests: XCTestCase {
         XCTAssertEqual(result[2], "RRRR")
     }
     
+    // MARK: - 5-Minute Row Tests
+    /// Tests for the top row of minutes, where each lamp represents 5 minutes
+    
+    /// At 00:00, the 5-minute row should have no lamps on
+    func test_fiveMinuteRow_shouldHaveNoLampsOn_atZeroMinutes() {
+        let result = clock.convert(time: "00:00:00")
+        XCTAssertEqual(result[3], "OOOOOOOOOOO")
+    }
+
+    /// At 00:05, the 5-minute row should have the first yellow lamp on
+    func test_fiveMinuteRow_shouldHaveYellowLamp_atFiveMinutes() {
+        let result = clock.convert(time: "00:05:00")
+        XCTAssertEqual(result[3], "YOOOOOOOOOO")
+    }
+
+    /// At 00:15, the 5-minute row should have a red lamp at the 15-minute position
+    func test_fiveMinuteRow_shouldHaveRedLamp_atFifteenMinutes() {
+        let result = clock.convert(time: "00:15:00")
+        XCTAssertEqual(result[3], "YYROOOOOOOO")
+    }
+
+    /// At 00:45, the 5-minute row should alternate yellow and red lamps correctly
+    func test_fiveMinuteRow_shouldAlternateYellowAndRedLamps() {
+        let result = clock.convert(time: "00:45:00")
+        XCTAssertEqual(result[3], "YYRYYRYYROO")
+    }
+
+    /// At 00:55, the 5-minute row should have all lamps on
+    func test_fiveMinuteRow_shouldHaveAllLampsOn_atFiftyFiveMinutes() {
+        let result = clock.convert(time: "00:55:00")
+        XCTAssertEqual(result[3], "YYRYYRYYRYY")
+    }
+
+    // MARK: - 1-Minute Row Tests
+    /// Tests for the bottom row of minutes, where each lamp represents 1 minute
+    
+    /// At exactly 5 minutes (00:05), the 1-minute row should have no lamps on
+    func test_oneMinuteRow_shouldHaveNoLampsOn_atExactFiveMinutes() {
+        let result = clock.convert(time: "00:05:00")
+        XCTAssertEqual(result[4], "OOOO")
+    }
+
+    /// At 00:06, the 1-minute row should have the first lamp on
+    func test_oneMinuteRow_shouldHaveOneLampOn_atSixMinutes() {
+        let result = clock.convert(time: "00:06:00")
+        XCTAssertEqual(result[4], "YOOO")
+    }
+
+    /// At 00:09, the 1-minute row should have four lamps on
+    func test_oneMinuteRow_shouldHaveFourLampsOn_atNineMinutes() {
+        let result = clock.convert(time: "00:09:00")
+        XCTAssertEqual(result[4], "YYYY")
+    }
 }
 
 
