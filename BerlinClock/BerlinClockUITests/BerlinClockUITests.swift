@@ -9,33 +9,31 @@ import XCTest
 
 final class BerlinClockUITests: XCTestCase {
 
+    var app: XCUIApplication!
+
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        app = XCUIApplication()
+        app.launch()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        app = nil
     }
+    
+    func test_clockUI_rendersCorrectNumberOfLampRows() throws {
+        let expectedLampCounts = [
+            (0, 1),  // Seconds row
+            (1, 4),  // 5 hours
+            (2, 4),  // 1 hour
+            (3, 11), // 5 minutes
+            (4, 4)   // 1 minute
+        ]
 
-    @MainActor
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    @MainActor
-    func testLaunchPerformance() throws {
-        // This measures how long it takes to launch your application.
-        measure(metrics: [XCTApplicationLaunchMetric()]) {
-            XCUIApplication().launch()
+        for (rowIndex, lampCount) in expectedLampCounts {
+            let row = app.otherElements.matching(identifier: "lampRow_\(rowIndex)")
+            XCTAssertEqual(row.count, lampCount, "Lamp row \(rowIndex) should have \(lampCount) lamps")
         }
     }
+
 }
