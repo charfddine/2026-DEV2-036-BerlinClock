@@ -29,22 +29,9 @@
 		6A6732872F3541D600360CBD /* BerlinClockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BerlinClockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		6A6732A22F354A7F00360CBD /* Exceptions for "BerlinClock" folder in "BerlinClockTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Models/BerlinClockConverter.swift,
-			);
-			target = 6A67327C2F3541D600360CBD /* BerlinClockTests */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		6A6732722F3541D500360CBD /* BerlinClock */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				6A6732A22F354A7F00360CBD /* Exceptions for "BerlinClock" folder in "BerlinClockTests" target */,
-			);
 			path = BerlinClock;
 			sourceTree = "<group>";
 		};
