@@ -132,6 +132,35 @@ final class BerlinClockTests: XCTestCase {
         let result = clock.convert(time: "00:09:00")
         XCTAssertEqual(result[4], "YYYY")
     }
+    
+    // MARK: - Full Berlin Clock (End-to-End) Tests
+    /// Tests the full Berlin Clock representation for a given time
+    
+    /// At 13:17:01, the Berlin Clock should return the correct lamp states for all rows
+    func test_fullBerlinClockRepresentation() {
+        let result = clock.convert(time: "13:17:01")
+
+        XCTAssertEqual(result, [
+            "O",
+            "RROO",
+            "RRRO",
+            "YYROOOOOOOO",
+            "YYOO"
+        ])
+    }
+
+    /// At 23:59:59, the Berlin Clock should return the correct lamp states for all rows
+    func test_lastSecondOfDay() {
+        let result = clock.convert(time: "23:59:59")
+
+        XCTAssertEqual(result, [
+            "O",
+            "RRRR",
+            "RRRO",
+            "YYRYYRYYRYY",
+            "YYYY"
+        ])
+    }
 }
 
 
